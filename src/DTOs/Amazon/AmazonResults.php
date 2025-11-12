@@ -7,12 +7,12 @@ use Spatie\LaravelData\Data;
 class AmazonResults extends Data
 {
     public function __construct(
-        public readonly array|null $items,
-        public readonly int|null $limit,
-        public readonly int|null $offset,
-        public readonly int|null $total,
-        public readonly int|null $status_code,
-        public readonly string|null $detail,
-        public readonly array|null $extra,
+        public readonly ?array $items,
+        public readonly ?int $limit,
+        public readonly ?int $offset,
+        public readonly ?int $total,
+        public readonly ?int $status_code,
+        public readonly ?string $detail,
+        public readonly ?array $extra,
     ) {}
 }

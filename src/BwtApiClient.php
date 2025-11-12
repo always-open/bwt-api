@@ -16,7 +16,9 @@ use Throwable;
 class BwtApiClient
 {
     protected ?string $baseUrl = null;
+
     protected ?string $apiKey = null;
+
     public function __construct(
         ?string $baseUrl = null,
         ?string $apiKey = null,
@@ -28,7 +30,7 @@ class BwtApiClient
     protected function getAuthHeader(): array
     {
         return [
-            'Authorization' => 'Bearer ' . $this->apiKey,
+            'Authorization' => 'Bearer '.$this->apiKey,
         ];
     }
 
