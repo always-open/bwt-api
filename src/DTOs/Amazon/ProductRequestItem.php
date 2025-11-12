@@ -11,6 +11,6 @@ class ProductRequestItem extends Data
         public readonly string $region,
         public readonly string $postal_code,
         public readonly int $scraping_mode,
-        public readonly null|int $max_offer_pages = null,
+        public readonly ?int $max_offer_pages = null,
     ) {}
 }

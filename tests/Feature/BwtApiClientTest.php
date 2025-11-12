@@ -14,7 +14,7 @@ class BwtApiClientTest extends BaseTest
             'bwt.com/api/123/results?limit=1&offset=0' => Http::response($this->getFixtureJsonContent('job_results.json'), 200),
         ]);
 
-        $client = new BwtApiClient();
+        $client = new BwtApiClient;
 
         $response = $client->getAmazonResults(123);
 

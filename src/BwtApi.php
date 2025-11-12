@@ -2,6 +2,4 @@
 
 namespace AlwaysOpen\BwtApi;
 
-class BwtApi
-{
-}
+class BwtApi {}
