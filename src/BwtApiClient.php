@@ -2,7 +2,9 @@
 
 namespace AlwaysOpen\BwtApi;
 
+use AlwaysOpen\BwtApi\DTOs\Amazon\AmazonRequestCreationResponse;
 use AlwaysOpen\BwtApi\DTOs\Amazon\AmazonResults;
+use AlwaysOpen\BwtApi\DTOs\BatchRequest;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Promise\PromiseInterface;
 use GuzzleHttp\Psr7\Request;
@@ -78,5 +80,25 @@ class BwtApiClient
         }
 
         return AmazonResults::from($response->json());
+    }
+
+    public function makeBatchAmazonRequest(
+        BatchRequest $batchRequest,
+    ): AmazonRequestCreationResponse {
+        try {
+            $response = $this->makeRequest(
+                'post',
+                $this->baseUrl,
+                $batchRequest->products,
+            );
+        } catch (Throwable $e) {
+            throw new RuntimeException('API request failed: '.$e->getMessage(), $e->getCode(), $e);
+        }
+
+        if (! $response->successful()) {
+            throw new RuntimeException('API request failed: '.$response->body(), $response->getStatusCode());
+        }
+
+        return AmazonRequestCreationResponse::from($response->json());
     }
 }
