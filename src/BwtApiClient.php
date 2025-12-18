@@ -32,7 +32,7 @@ class BwtApiClient
     {
         return [
             'Authorization' => 'Bearer '.$this->apiKey,
-        ];        
+        ];
     }
 
     /**
