@@ -4,6 +4,7 @@ namespace AlwaysOpen\BwtApi;
 
 use AlwaysOpen\BwtApi\DTOs\Amazon\AmazonRequestCreationResponse;
 use AlwaysOpen\BwtApi\DTOs\Amazon\AmazonResults;
+use AlwaysOpen\BwtApi\DTOs\Amazon\AmazonSessionStatusResponse;
 use AlwaysOpen\BwtApi\DTOs\BatchRequest;
 use GuzzleHttp\Exception\GuzzleException;
 use GuzzleHttp\Promise\PromiseInterface;
@@ -24,14 +25,14 @@ class BwtApiClient
         ?string $apiKey = null,
     ) {
         $this->baseUrl = $baseUrl ?? config('bwt-api.base_url', 'https://bwt.com/api/');
-        $this->apiKey = $apiKey ?? config('bwt-api.username') ?? '';
+        $this->apiKey = $apiKey ?? config('bwt-api.api_key') ?? '';
     }
 
     protected function getAuthHeader(): array
     {
         return [
             'Authorization' => 'Bearer '.$this->apiKey,
-        ];
+        ];        
     }
 
     /**
@@ -61,6 +62,27 @@ class BwtApiClient
         }, 2000);
     }
 
+    public function getAmazonSessionStatus(
+        string $id,
+    ): AmazonSessionStatusResponse {
+        try {
+            $response = $this->makeRequest(
+                'get',
+                $this->baseUrl .= "/$id",
+                null,
+                3,
+            );
+        } catch (Throwable $e) {
+            throw new RuntimeException('API request failed: '.$e->getMessage(), $e->getCode(), $e);
+        }
+
+        if (! $response->successful()) {
+            throw new RuntimeException('API request failed: '.$response->body(), $response->getStatusCode());
+        }
+
+        return AmazonSessionStatusResponse::from($response->json());
+    }
+
     public function getAmazonResults(
         string $id,
         int $limit = 1,
@@ -69,7 +91,7 @@ class BwtApiClient
         try {
             $response = $this->makeRequest(
                 'get',
-                $this->baseUrl .= "$id/results?limit=$limit&offset=$offset",
+                $this->baseUrl .= "/$id/results?limit=$limit&offset=$offset",
                 null,
                 3,
             );
