@@ -24,7 +24,7 @@ class BwtApiClient
         ?string $baseUrl = null,
         ?string $apiKey = null,
     ) {
-        $this->baseUrl = $baseUrl ?? config('bwt-api.base_url', 'https://bwt.com/api/');
+        $this->baseUrl = $baseUrl ?? config('bwt-api.base_url', 'https://bwt.com/api');
         $this->apiKey = $apiKey ?? config('bwt-api.api_key') ?? '';
     }
 
