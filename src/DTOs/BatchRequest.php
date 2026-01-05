@@ -2,6 +2,7 @@
 
 namespace AlwaysOpen\BwtApi\DTOs;
 
+use AlwaysOpen\BwtApi\DTOs\Amazon\ProductRequestItem;
 use Spatie\LaravelData\Data;
 
 class BatchRequest extends Data
