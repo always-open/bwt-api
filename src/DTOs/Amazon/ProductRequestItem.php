@@ -2,8 +2,8 @@
 
 namespace AlwaysOpen\BwtApi\DTOs\Amazon;
 
-use Spatie\LaravelData\Data;
 use AlwaysOpen\BwtApi\Enums\ScrapingModes;
+use Spatie\LaravelData\Data;
 
 class ProductRequestItem extends Data
 {

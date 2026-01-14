@@ -32,7 +32,7 @@ class BwtApiClient
     {
         return [
             'Authorization' => 'Bearer '.$this->apiKey,
-        ];        
+        ];
     }
 
     /**
@@ -68,7 +68,7 @@ class BwtApiClient
         try {
             $response = $this->makeRequest(
                 'get',
-                $this->baseUrl . "/$id",
+                $this->baseUrl."/$id",
                 null,
                 3,
             );
@@ -91,7 +91,7 @@ class BwtApiClient
         try {
             $response = $this->makeRequest(
                 'get',
-                $this->baseUrl . "/$id/results?limit=$limit&offset=$offset",
+                $this->baseUrl."/$id/results?limit=$limit&offset=$offset",
                 null,
                 3,
             );
