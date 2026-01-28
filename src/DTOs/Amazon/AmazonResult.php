@@ -25,16 +25,16 @@ class AmazonResult extends Data
         public readonly array $additional_details,
         public readonly array $additional_information,
         public readonly array $additional_technical_details,
-        public readonly string $manufacturer,
+        public readonly ?string $manufacturer,
         public readonly array $best_sellers_rank,
         public readonly array $category,
         public readonly string|int|null $variations,
         public readonly string|int|null $past_month_sales,
-        public readonly array $images,
-        public readonly string $storefront,
+        public readonly ?array $images,
+        public readonly ?string $storefront,
         public readonly ?string $merchant_id,
         public readonly ?string $storefront_url,
-        public readonly string $stock,
+        public readonly ?string $stock,
         public readonly string $condition,
         public readonly string|int|float|null $price,
         public readonly string|int|float|null $sale_price,
@@ -52,7 +52,7 @@ class AmazonResult extends Data
         /* @var AmazonResultOffer[] $offers */
         #[DataCollectionOf(AmazonResultOffer::class)]
         public readonly ?array $offers,
-        #[WithCast(DateTimeInterfaceCast::class, format: ['Y-m-d H:i:s', 'Y-m-d\TH:i:s\+H:i', 'Y-m-d H:i:s.u'])]
+        #[WithCast(DateTimeInterfaceCast::class, format: ['Y-m-d H:i:s', 'Y-m-d\TH:i:s', 'Y-m-d\TH:i:s\+H:i', 'Y-m-d H:i:s.u'])]
         public readonly ?Carbon $collected_at,
         public readonly ?string $exception,
     ) {}

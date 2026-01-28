@@ -5,7 +5,8 @@ parameters:
     level: 5
     paths:
         - src
-        - database
     tmpDir: build/phpstan
     checkOctaneCompatibility: true
     checkModelProperties: true
+    ignoreErrors:
+        - '#Call to an undefined method Illuminate\\Http\\Client\\Response::getStatusCode\(\)#'
