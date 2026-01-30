@@ -68,7 +68,7 @@ class BwtApiClient
         try {
             $response = $this->makeRequest(
                 'get',
-                $this->baseUrl .= "/$id",
+                $this->baseUrl."/$id",
                 null,
                 3,
             );
@@ -85,13 +85,13 @@ class BwtApiClient
 
     public function getAmazonResults(
         string $id,
-        int $limit = 1,
+        int $limit = 1000,
         int $offset = 0,
     ): AmazonResults {
         try {
             $response = $this->makeRequest(
                 'get',
-                $this->baseUrl .= "/$id/results?limit=$limit&offset=$offset",
+                $this->baseUrl."/$id/results?limit=$limit&offset=$offset",
                 null,
                 3,
             );

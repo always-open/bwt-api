@@ -12,9 +12,9 @@ class AmazonSessionStatusResponse extends Data
     public function __construct(
         public readonly int $status,
         public readonly string $message,
-        #[WithCast(DateTimeInterfaceCast::class, format: ['Y-m-d H:i:s', 'Y-m-d\TH:i:s\+H:i', 'Y-m-d H:i:s.u'])]
+        #[WithCast(DateTimeInterfaceCast::class, format: ['Y-m-d H:i:s', 'Y-m-d\TH:i:s\+H:i', 'Y-m-d H:i:s.u', 'Y-m-d\TH:i:s'])]
         public readonly ?Carbon $created_at,
-        #[WithCast(DateTimeInterfaceCast::class, format: ['Y-m-d H:i:s', 'Y-m-d\TH:i:s\+H:i', 'Y-m-d H:i:s.u'])]
+        #[WithCast(DateTimeInterfaceCast::class, format: ['Y-m-d H:i:s', 'Y-m-d\TH:i:s\+H:i', 'Y-m-d H:i:s.u', 'Y-m-d\TH:i:s'])]
         public readonly ?Carbon $finished_at,
     ) {}
 }
