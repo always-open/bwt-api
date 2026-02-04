@@ -27,7 +27,7 @@ class AmazonResult extends Data
         public readonly array $additional_technical_details,
         public readonly ?string $manufacturer,
         public readonly array $best_sellers_rank,
-        public readonly array $category,
+        public readonly ?array $category,
         public readonly string|int|null $variations,
         public readonly string|int|null $past_month_sales,
         public readonly ?array $images,
