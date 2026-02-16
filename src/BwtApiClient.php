@@ -20,12 +20,16 @@ class BwtApiClient
 
     protected ?string $apiKey = null;
 
+    protected int $timeout = 60;
+
     public function __construct(
         ?string $baseUrl = null,
         ?string $apiKey = null,
+        ?int $timeout = null,
     ) {
         $this->baseUrl = $baseUrl ?? config('bwt-api.base_url', 'https://bwt.com/api');
         $this->apiKey = $apiKey ?? config('bwt-api.api_key') ?? '';
+        $this->timeout = $timeout ?? config('bwt-api.timeout', 60);
     }
 
     protected function getAuthHeader(): array
@@ -54,9 +58,11 @@ class BwtApiClient
         return retry($retryCount ?? 0, function () use ($request, $method, $payload): PromiseInterface|Response {
             if (strtolower($method) === 'post') {
                 return Http::withHeaders($request->getHeaders())
+                    ->timeout($this->timeout)
                     ->post($request->getUri(), $payload);
             } else {
                 return Http::withHeaders($request->getHeaders())
+                    ->timeout($this->timeout)
                     ->get($request->getUri());
             }
         }, 2000);
