@@ -7,7 +7,7 @@ use Spatie\LaravelData\Data;
 class AmazonResultOffer extends Data
 {
     public function __construct(
-        public readonly string $storefront,
+        public readonly ?string $storefront,
         public readonly null|string|int $merchant_id,
         public readonly ?string $store_front_url,
         public readonly ?string $condition,
