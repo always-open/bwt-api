@@ -20,7 +20,7 @@ class BwtApiClient
 
     protected ?string $apiKey = null;
 
-    protected int $timeout = 60;
+    protected int $timeout = 300;
 
     public function __construct(
         ?string $baseUrl = null,
@@ -29,7 +29,7 @@ class BwtApiClient
     ) {
         $this->baseUrl = $baseUrl ?? config('bwt-api.base_url', 'https://bwt.com/api');
         $this->apiKey = $apiKey ?? config('bwt-api.api_key') ?? '';
-        $this->timeout = $timeout ?? config('bwt-api.timeout', 60);
+        $this->timeout = $timeout ?? config('bwt-api.timeout', 300);
     }
 
     protected function getAuthHeader(): array
