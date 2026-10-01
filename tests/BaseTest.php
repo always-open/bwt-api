@@ -17,9 +17,11 @@ class BaseTest extends TestCase
             '--tag' => 'config',
         ]);
 
-        Http::preventStrayRequests();
-
         $this->refreshApplication();
+
+        // After refreshApplication(): it builds a new app, which drops a fake
+        // registered earlier and lets an unmatched request reach the real API.
+        Http::preventStrayRequests();
     }
 
     protected function getFixtureJsonContent(string $name): string
